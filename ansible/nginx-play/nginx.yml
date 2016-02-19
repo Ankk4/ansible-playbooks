@@ -1,0 +1,23 @@
+- name: Configure webserver with nginx # Playbookin nimi
+  hosts: webservers # Mille hosteille tila toteutetaan
+  become: True # Tarvitaan sudo
+  tasks:
+      - service: name=apache2 state=stopped #Pysäytä apache2 palvelu (varaa portin 80)
+
+      - name: install nginx # Taskin nimi
+        apt: name=nginx update_cache=yes # Asenna nginx paketti, päivitä pakettilista
+
+      - name: copy nginx config file 
+        copy: src=files/nginx.conf dest=/etc/nginx/sites-available/default # Copy moduuli 
+     
+      - name: enable configuration
+        file: >
+            dest=/etc/nginx/sites-enabled/default
+            src=/etc/nginx/sites-available/default
+            state=link
+            
+      - name: copy index.html
+        template: src=templates/index.html.j2 dest=/usr/share/nginx/html/index.html mode=0644
+ 
+      - name: restart nginx
+        service: name=nginx state=restarted
