@@ -3,9 +3,11 @@
   become: True # Tarvitaan sudo
   tasks:
       - service: name=apache2 state=stopped #Pysäytä apache2 palvelu (varaa portin 80)
+        ignore_errors: yes # Jos apachea ei ole asennettu, ignoorataan virheilmoitus
+
 
       - name: install nginx # Taskin nimi
-        apt: name=nginx update_cache=yes # Asenna nginx paketti, päivitä pakettilista
+        apt: name=nginx update_cache=yes force=yes #Asenna nginx paketti, päivitä pakettilista
 
       - name: copy nginx config file 
         copy: src=files/nginx.conf dest=/etc/nginx/sites-available/default # Copy moduuli 

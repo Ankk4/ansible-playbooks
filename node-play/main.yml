@@ -1,0 +1,9 @@
+- name: Install NPM and Nodejs
+  hosts: all
+  become: True
+  tasks:
+  - name: Install NPM
+    apt: name=npm update_cache=yes state=present
+
+  - npm: name=n global=yes
+  - shell: sudo n stable
