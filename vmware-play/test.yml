@@ -8,7 +8,7 @@
       - vsphere_guest:
           vcenter_hostname: vcenter01.dc.lab
           username: anteroj
-          password: 32902163dC
+          password: "password"
           guest: KAT13JAntero_CreatedWithAnsible
           state: powered_on
           vm_disk:

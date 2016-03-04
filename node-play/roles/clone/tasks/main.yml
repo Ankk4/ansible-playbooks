@@ -1,0 +1,17 @@
+- name: Create group for new user
+  group: name={{ item.value.group }} state=present
+  with_dict: "{{ users }}"
+
+- name: Create new user
+  user: name={{ item.value.name }} password={{ item.value.password }} state=present groups="sudo,{{ item.value.group }}"
+  with_dict: "{{ users }}"
+
+- name: Clone repository
+  git: repo=https://github.com/Ankk4/SensorDashboard.git dest={{appPath}}/SensorDashboard update=yes clone=yes
+
+- name: Install app
+  npm: path={{ appPath }}/SensorDashboard/app/ state=present
+
+- name: "Start Node.js app."
+  command: forever start {{ appPath }}/SensorDashboard/app/app.js
+  when: "forever_list.stdout.find('{{ appPath }}/SensorDashboard/app/app.js') == -1"

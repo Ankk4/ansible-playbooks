@@ -1,0 +1,10 @@
+- name: Deploy SensorDashboard
+  hosts: all
+  become: true
+  vars:
+    - appPath: "/home/ansible"
+  roles:
+      - common
+      - dev
+      - clone
+
