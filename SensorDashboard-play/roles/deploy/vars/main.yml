@@ -1,0 +1,9 @@
+appVersion: "master"
+repoURL: "https://github.com/Ankk4/SensorDashboard.git"
+appPath: "/home/ansible"
+
+users:
+  ansible:
+    name: ansible
+    group: ansible
+    password: ehDCm0dR9rqgE

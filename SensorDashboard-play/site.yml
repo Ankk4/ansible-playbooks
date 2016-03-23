@@ -1,0 +1,12 @@
+- name: Deploy SensorDashboard
+  hosts: all
+  become: true
+  
+  pre_tasks:
+    - name: update apt cache
+      apt: update_cache=yes
+
+  roles:
+      - dependencies
+      - deploy
+

@@ -9,16 +9,19 @@
         apt: name=vim update_cache=yes
 
       - name: Download My git configuration
-        git: repo={{repo}} dest=/home/{{user}}/vim
+        git: repo={{repo}} dest=/home/{{user}}/vim force=yes
 
       - name: Check if clone was succesful
         stat: path=/home/{{ user }}/vim 
         register: vim_stat
 
       - name: Move files to correct places
-        command: mv /home/{{user}}/vim/.vimrc /home/{{user}}/.vimrc
+        command: cp /home/{{user}}/vim/.vimrc /home/{{user}}/.vimrc
         when: vim_stat.stat.exists      
 
       - name: Move more files
-        command: mv /home/{{user}}/vim/.vim /home/{{user}}/.vim
+        command: cp -r /home/{{user}}/vim/.vim/ /home/{{user}}/.vim/
         when: vim_stat.stat.exists
+
+      - name: Delete repo folder
+        file: path=/home/{{user}}/vim/ state=absent
