@@ -3,7 +3,7 @@
   become: True
   vars:
     - repo: https://github.com/Ankk4/vim.git  
-    - user: antero
+    - user: administrator
   tasks:
       - name: Install VIM
         apt: name=vim update_cache=yes

@@ -6,16 +6,15 @@
         ignore_errors: yes # Jos apachea ei ole asennettu, ignoorataan virheilmoitus
 
       - name: install nginx # Taskin nimi
-        apt: name=nginx update_cache=yes force=yes #Asenna nginx paketti, päivitä pakettilista
+        apt: name=nginx update_cache=yes #Asenna nginx paketti, päivitä pakettilista
 
-      - name: copy nginx config file 
+      - name: copy nginx config file #Tee vasta ekan testin jälkeen!
         copy: src=files/nginx.conf dest=/etc/nginx/sites-available/default # Copy moduuli 
      
-      - name: enable configuration
+      - name: enable configuration #Luo symlink 'enabled' kansioon - kertoo että on käytössä
         file: >
             dest=/etc/nginx/sites-enabled/default
-            src=/etc/nginx/sites-available/default
-            state=link
+            src=/etc/nginx/sites-available/default state=link
             
       - name: copy index.html
         template: src=templates/index.html.j2 dest=/usr/share/nginx/html/index.html mode=0644
