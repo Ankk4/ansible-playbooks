@@ -1,0 +1,27 @@
+- name: Add rabbitmq repository source
+  apt_repository: repo='deb http://www.rabbitmq.com/debian/ testing main' state=present
+
+- name: Add repository public key 
+  apt_key: url=https://www.rabbitmq.com/rabbitmq-signing-key-public.asc
+
+- name: Update packages with new sources
+  apt: update_cache=true
+
+- name: Install rabbitmq server
+  apt: name=rabbitmq-server
+
+- name: Install graphic control panel
+  command: rabbitmq-plugins enable rabbitmq_management
+
+- name: Install MQTT plugin
+  command: rabbitmq-plugins enable rabbitmq_mqtt
+
+- name: Copy config template
+  template: 
+    src: "rabbitmq.config.j2"
+    dest: "/etc/rabbitmq/rabbitmq.config"
+
+- name: Restart service
+  service: name=rabbitmq-server state=restarted
+
+

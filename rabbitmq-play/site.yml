@@ -1,0 +1,11 @@
+- name: Install and configure rabbitmq
+  hosts: 127.0.0.1
+  become: true
+
+  pre_tasks:
+    - name: Update package list
+      apt: update_cache=true
+
+  roles:
+    - { role: rabbitmq }
+

@@ -1,0 +1,8 @@
+mqtt_users:
+  admin:
+    name: "admin"
+    password: "P@ssw0rd"
+  guest:
+    name: "guest"
+    password: "guest"
+
