@@ -2,9 +2,10 @@
   {rabbitmq_stomp, 
     [ 
       { default_user, 
-        {%- for key in mqtt_users.itervalues() -%}
-        [{ login, "{{key.name}}" }, { passcode, "{{key.password}}" }]{% if not loop.last %}, {% endif %}
-        {%- endfor -%} }
+        {% for key in mqtt_users.itervalues() -%}
+        [{ login, "{{key.name}}" }, { passcode, "{{key.password}}" }]{%- if not loop.last %}, {% endif %}
+        {%- endfor %}
+      }
     ]
   }
 ].
