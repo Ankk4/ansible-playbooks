@@ -1,0 +1,13 @@
+mqtt_users:
+  admin:
+    name: "admin"
+    password: "Passw0rd"
+    tags: "administrator"
+    vhost: "/"
+    configure_priv: '.*'
+    read_priv: '.*'
+    write_priv: '.*'
+
+plugins:
+  - rabbitmq_mqtt
+  - rabbitmq_management
