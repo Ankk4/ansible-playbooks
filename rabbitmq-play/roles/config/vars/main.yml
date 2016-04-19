@@ -11,3 +11,4 @@ mqtt_users:
 plugins:
   - rabbitmq_mqtt
   - rabbitmq_management
+  - rabbitmq_management_visualiser
