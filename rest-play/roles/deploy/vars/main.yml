@@ -1,0 +1,12 @@
+appVersion: "master"
+repoURL: "https://github.com/Ankk4/grabson.git"
+appPath: "/home/administrator/RestAPI"
+execPath: "{{ appPath }}/lib/server.js"
+logPath: "{{ appPath }}/out.log"
+errPath: "{{ appPath }}/err.log"
+
+users:
+  ansible:
+    name: ansible
+    group: ansible
+    password: ehDCm0dR9rqgE

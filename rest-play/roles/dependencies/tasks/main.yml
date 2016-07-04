@@ -1,0 +1,29 @@
+- name: Install NPM
+  apt: name=npm state=present
+
+- name: Install N
+  npm: name=n state=present global=yes 
+
+- name: Install Nodejs
+  shell: n stable
+
+- name: Install Nodemon
+  npm: name=nodemon state=present global=yes
+
+- name: Install PM2
+  npm: name=pm2 state=present global=yes
+
+- name: Install forever (to run Node.js app).
+  npm: name=forever global=yes state=present
+
+- name: Check list of Node.js apps running.
+  command: forever list
+  register: forever_list
+  changed_when: false
+
+- name: Install git
+  apt: name=git state=present
+
+- name: Install tmux
+  apt: name=tmux state=present
+

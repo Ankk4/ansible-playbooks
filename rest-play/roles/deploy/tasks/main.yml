@@ -1,0 +1,20 @@
+- name: Create group for new user
+  group: name={{ item.value.group }} state=present
+  with_dict: "{{ users }}"
+
+- name: Create new user
+  user: name={{ item.value.name }} password={{ item.value.password }} state=present groups=sudo,{{ item.value.group }}
+  with_dict: "{{ users }}"
+
+- name: Clone repository
+  git: repo={{repoURL}} dest={{appPath}} update=yes clone=yes
+
+- name: Install app
+  npm: path={{ appPath }}/ state=present
+
+- name: "Start Node.js app in tmux"
+  command: "{{ item }}"
+  with_items:
+    - tmux new -d -s app
+    - tmux send-keys -t app "forever -o {{ logPath }} -e {{ errPath }} start {{ execPath }}" Enter
+  when: "forever_list.stdout.find('{{ appPath }}/*') == -1"
