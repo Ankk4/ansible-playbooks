@@ -22,3 +22,9 @@
 - name: Install tmux
   apt: name=tmux state=present
 
+- name: Check list of Node.js apps running.
+  command: forever list
+  register: forever_list
+  changed_when: false
+
+
