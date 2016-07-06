@@ -7,7 +7,7 @@
 #  with_dict: "{{ users }}"
 
 - name: Clone repository
-  git: repo={{repoURL}} dest={{appPath}} update=yes clone=yes
+  git: repo={{repoURL}} dest={{appPath}} update=yes clone=yes force=yes
 
 - name: Install app
   npm: path={{ appPath }}/ state=present
