@@ -12,8 +12,13 @@
 - name: Install app
   npm: path={{ appPath }}/ state=present
 
+- name: Stop previous forever daemons
+  command: forever stopall
+
 - name: Start Node app with forever
   command: forever -o {{logPath}} -e {{errPath}} start {{execPath}}
+  environment:
+      PORT: 80
   when: "forever_list.stdout.find('{{ appPath  }}/*') == -1"
 
 #- name: "Start Node.js app in tmux"
