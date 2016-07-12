@@ -19,7 +19,7 @@
   with_items: "{{ plugins }}"
   notify: rabbit_restart
 
-- name: Copy config template
+- name: Copy config template rabbit
   template: 
     src: "rabbitmq.config.j2"
     dest: "/etc/rabbitmq/rabbitmq.config"
