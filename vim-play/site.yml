@@ -1,6 +1,5 @@
 - name: Install and Configure VIM
-  hosts: 127.0.0.1
-  become: True
+  hosts: all
   vars:
     - repo: https://github.com/Ankk4/vim.git  
     - user: administrator
