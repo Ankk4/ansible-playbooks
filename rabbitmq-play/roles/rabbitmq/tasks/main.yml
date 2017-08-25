@@ -5,7 +5,7 @@
   apt_key: url=https://www.rabbitmq.com/rabbitmq-signing-key-public.asc
 
 - name: Update packages with new sources
-  apt: update_cache=true
+  apt: update_cache=true force=yes
 
 - name: Install rabbitmq server
   apt: name=rabbitmq-server
