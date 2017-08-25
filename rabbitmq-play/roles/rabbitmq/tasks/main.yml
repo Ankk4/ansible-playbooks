@@ -1,3 +1,6 @@
+- name: Clean dat shit up
+  shell: apt-get clean
+
 - name: Add rabbitmq repository source
   apt_repository: repo='deb http://www.rabbitmq.com/debian/ testing main' state=present
 
@@ -5,7 +8,7 @@
   apt_key: url=https://www.rabbitmq.com/rabbitmq-signing-key-public.asc
 
 - name: Update packages with new sources
-  apt: update_cache=true force=yes
+  apt: update_cache=true upgrade=yes force=true
 
 - name: Install rabbitmq server
-  apt: name=rabbitmq-server
+  shell: apt-get install rabbitmq-server -y --force-yes
