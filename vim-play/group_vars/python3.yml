@@ -1,0 +1,7 @@
+---
+# This is a fix for systems that default to python3.
+# Add those systems to the 'python3' group in the inventory file.
+## ansible_python_interpreter={{python_interpreter}}
+# NOT TESTED
+
+python_interpreter: '/usr/bin/python2.7'

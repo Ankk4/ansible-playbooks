@@ -1,0 +1,8 @@
+---
+# These variables are defined to all groups in the inventory file.
+
+username: antero 
+
+# Default SSH username & password
+ansible_ssh_user: antero
+ansible_ssh_pss: Passw0rd

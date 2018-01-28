@@ -1,0 +1,12 @@
+---
+- name: Vim configuration
+  hosts: all
+  gather_facts: yes
+
+  vars:
+    - repo: https://github.com/Ankk4/vim.git
+    - user: antero
+
+  roles:
+    - apt-update
+    - vim

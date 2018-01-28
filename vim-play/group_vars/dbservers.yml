@@ -1,0 +1,4 @@
+---
+# Spesific group name variable file will override the 'all' file.
+# You can create directories named after your groups or hosts,
+# and Ansible will read all the files in these directories.
